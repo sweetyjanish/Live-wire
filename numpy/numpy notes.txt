@@ -1,0 +1,211 @@
+import numpy as np
+
+# Basic 1D Array
+# Creating a 1D array from a list
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)
+print(type(arr))  # Output the type of the array
+
+# Creating a 1D array from a tuple
+arrtuple = np.array((1, 2, 3, 4, 5))
+print(arrtuple)
+
+# 0D Array (Scalar)
+# Creating a 0D array (single number)
+arr = np.array(42)
+print(arr)
+print(arr.ndim)  # Output the number of dimensions
+
+# 1D Array
+# Creating a 1D array
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)
+print(arr.ndim)  # Output the number of dimensions
+
+# 2D Array
+# Creating a 2D array
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr)
+print(arr.ndim)  # Output the number of dimensions
+
+# 3D Array
+# Creating a 3D array
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+print(arr)
+print(arr.ndim)  # Output the number of dimensions
+
+# Higher Dimensional Arrays
+# Creating an array with 5 dimensions
+arr = np.array([1, 2, 3, 4], ndmin=5)
+print(arr)
+print('Number of dimensions :', arr.ndim)  # Output the number of dimensions
+
+# Accessing Array Elements
+# Accessing elements in a 1D array
+arr = np.array([1, 2, 3, 4, 5])
+print(arr[0])
+print(arr[1])
+print(arr[2] + arr[3])
+
+# Accessing elements in a 2D array
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+print('2nd element on 1st row: ', arr[0, 1])
+print('5th element on 2nd row: ', arr[1, 4])
+
+# Accessing elements in a 3D array
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+print(arr[0, 1, 2])
+
+# Negative Indexing
+# Using negative indexing to access array elements
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+print('Last element from 2nd dim: ', arr[1, -1])
+
+# Slicing Arrays
+# Slicing a 1D array
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+print(arr[1:5])   # Slicing from index 1 to 4
+print(arr[4:])    # Slicing from index 4 to the end
+print(arr[:4])    # Slicing from the beginning to index 3
+print(arr[-3:-1]) # Negative slicing
+
+# Slicing with step
+print(arr[1:5:2]) # Slicing from index 1 to 4 with a step of 2
+print(arr[::])    # Slicing the entire array
+print(arr[::2])   # Slicing with a step of 2
+
+# Slicing a 2D array
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+print(arr[1, 1:4]) # Slicing elements from index 1 to 3 in the second row
+print(arr[0, 1:4]) # Slicing elements from index 1 to 3 in the first row
+print(arr[0:2, 3]) # Slicing the 4th element from both rows
+print(arr[0:2, 1:4]) # Slicing elements from index 1 to 3 from both rows
+
+# Data Types in Arrays
+# Checking the data type of an array
+arr = np.array([1, 2, 3, 4])
+print(arr.dtype)
+
+arr = np.array(['apple', 'banana', 'cherry'])
+print(arr.dtype)
+
+# Creating arrays with a specific data type
+arr = np.array([1, 2, 3, 4], dtype='S') # String data type
+print(arr)
+print(arr.dtype)
+
+arr = np.array([1, 2, 3, 4], dtype='i4') # 4-byte integer
+print(arr)
+print(arr.dtype)
+
+# Converting data types of existing arrays
+arr = np.array([1.1, 2.1, 3.1])
+newarr = arr.astype('i') # Convert to integers
+print(newarr)
+print(newarr.dtype)
+
+newarr = arr.astype(int) # Another way to convert to integers
+print(newarr)
+print(newarr.dtype)
+
+# Converting to boolean type
+arr = np.array([1, 0, 3])
+newarr = arr.astype(bool)
+print(newarr)
+print(newarr.dtype)
+
+# Copy vs View
+# Copying an array
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.copy()
+arr[0] = 42
+print(arr)
+print(x) # Copy is not affected by changes to the original array
+
+# Viewing an array
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.view()
+arr[0] = 42
+print(arr)
+print(x) # View reflects changes in the original array
+
+# Checking if an array owns its data
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.copy()
+y = arr.view()
+print(x.base) # None, since x is a copy
+print(y.base) # Original array, since y is a view
+
+# Shape of Arrays
+# Getting the shape of an array
+arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+print(arr.shape)
+
+arr = np.array([1, 2, 3, 4], ndmin=5)
+print(arr)
+print('Shape of array :', arr.shape)
+
+# Reshaping Arrays
+# Reshaping a 1D array to a 2D array
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+newarr = arr.reshape(4, 3)
+print(newarr)
+
+newarr = arr.reshape(2, 3, 2) # Reshaping to a 3D array
+print("Reshaped", newarr)
+
+# Checking if reshaped array is a view or a copy
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+print(arr.reshape(2, 4).base) # Base value
+print(arr.reshape(2, 4)) # Reshaped value
+
+# Reshaping with an unknown dimension
+newarr = arr.reshape(2, 2, -1) # -1 means unknown dimension
+print("Unknown", newarr)
+
+# Flattening an array
+newarr = arr.reshape(-1)
+print(newarr)
+
+# Iterating through Arrays
+# Iterating through a 1D array
+arr = np.array([1, 2, 3])
+for x in arr:
+    print(x)
+
+# Iterating through a 2D array
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+for x in arr:
+    print(x)  # Prints each row
+
+for x in arr:
+    for y in x:
+        print(y)  # Prints each element
+
+# Iterating through a 3D array
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+for x in arr:
+    print(x)  # Prints each 2D array
+
+for x in arr:
+    for y in x:
+        for z in y:
+            print(z)  # Prints each element
+
+# Iterating using nditer
+for x in np.nditer(arr):
+    print(x)
+
+# Iterating with different data types
+arr = np.array([1, 2, 3])
+for x in np.nditer(arr, flags=['buffered'], op_dtypes=['S']):
+    print(x)
+
+# Iterating with a step size
+arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+for x in np.nditer(arr[:, ::2]):
+    print(x)
+
+# Iterating with ndenumerate
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+for
